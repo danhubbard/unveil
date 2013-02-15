@@ -1,4 +1,5 @@
 require "unveil/version"
+require "unveil/humanize"
 
 module Unveil
   class Application
