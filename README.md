@@ -18,11 +18,14 @@ Or install it yourself as:
 
 ## Usage
 
+### Get up and running
+
 Create new directory of your project name with the following files
 
 - Gemfile
 - config.ru
 - config/application.rb
+- public/index.html
 
 Add the unveil gem to your Gemfile:
 
@@ -52,7 +55,21 @@ require 'unveil'
 run ProjectName::Application.new
 ```
 
-Fire up the web app with ````rackup -p 3001```` and point your browser at [localhost:3001](http://localhost:3001).
+### Add your first controller
+
+Create a new controller:
+
+```ruby
+# app/controllers/my_controller.rb
+class MyController < Unveil::Controller
+  def message
+    "Huston we have lift off!"
+  end
+end
+```
+
+Fire up the web app with ````rackup -p 3001```` and point your browser at [localhost:3001/my/message](http://localhost:3001/my/message),
+and you'll see a message from outer space.
 
 ## Contributing
 
