@@ -9,16 +9,27 @@ module Unveil
 
       klass, act = get_controller_and_action(env)
       controller = klass.new(env)
-      text = controller.public_send(act)
+      code, text = content(controller, act)
 
       [
-        200,
+        code,
         { 'Content-Type' => 'text/html' },
         [text]
       ]
     end
 
     private
+
+    # TODO: Class Extract
+    def content controller, action
+      begin
+        text = controller.public_send(action)
+
+        [200, text]
+      rescue
+        [502, 'An error occured! Probably those weasels again...!?']
+      end
+    end
 
     # HACK
     def unsupported_file_request(env)
